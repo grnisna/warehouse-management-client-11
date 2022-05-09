@@ -22,7 +22,7 @@ const ItemDetail = () => {
         singleItem = {quantity,...rest};
          
 
-        const url = `http://localhost:5000/items/${itemId}`;
+        const url = `https://immense-brushlands-19382.herokuapp.com/items/${itemId}`;
         fetch(url,{
             method:'PUT',
             headers:{

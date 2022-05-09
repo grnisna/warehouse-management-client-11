@@ -5,8 +5,7 @@ import Home from './components/Home/Home';
 import ItemDetail from './components/Home/ItemDetail/ItemDetail';
 import Footer from './components/Home/Footer/Footer';
 import Carosel from './components/Home/Carosel/Carosel';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
         <Route path='/login' element={<Login></Login>} ></Route>
       </Routes>
       <Footer></Footer>
-      <ToastContainer/>
+      
     </div>
   );
 }

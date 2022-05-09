@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import UseItems from '../../Hooks/UseItems/UseItems';
 import './ImageDetail.css';
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const ItemDetail = () => {
-    // const [items,setItems] = UseItems();
+   
     const { itemId } = useParams();
-    // let singleItem = items.find(item => item._id === itemId); 
-
-    // const {name} = singleItem;
-    // console.log(singleItem);
 
     const [updateItem, setUpdateItem] = useState({});
-    console.log(updateItem.name);
+
+    console.log(updateItem);
     useEffect( ()=>{
         const url = `https://immense-brushlands-19382.herokuapp.com/items/${itemId}`;
         fetch(url)
@@ -27,8 +25,9 @@ const ItemDetail = () => {
 
     const handleAddItem = (event) =>{                
        event.preventDefault();
-         const getValue = event.target.number.value;
-         const updateQtn = quantity + getValue;
+         let getValue = parseInt(event.target.number.value);
+         let previusValue = parseInt(quantity);
+         let updateQtn = previusValue + getValue;
          const newItem = {quantity:updateQtn}; 
 
         const url = `https://immense-brushlands-19382.herokuapp.com/items/${itemId}`;
@@ -40,9 +39,31 @@ const ItemDetail = () => {
             body:JSON.stringify(newItem)
         })
         .then( res => res.json())
-        .then( data => setUpdateItem(data));
+        .then( data => console.log(data));
        
-    }
+    };
+
+    const handleDeliverItem = () =>{                
+       
+         let getValue = parseInt(1);
+         let previusValue = parseInt(quantity);
+         let updateQtn = previusValue - getValue;
+         const newItem = {quantity:updateQtn}; 
+
+        const url = `https://immense-brushlands-19382.herokuapp.com/items/${itemId}`;
+        fetch(url,{
+            method:'PUT',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(newItem)
+        })
+        .then( res => res.json())
+        .then( data => {
+            alert('Decreasing One Item');
+        });
+       
+    };
     return (
         <div>
             
@@ -68,7 +89,7 @@ const ItemDetail = () => {
                     </p>
 
                     <div className='btnContainer' >
-                        <button className='btn btn-primary'>Delivered</button>
+                        <button onClick={handleDeliverItem} className='btn btn-primary'>Delivered</button>
                         
                         <form onSubmit={handleAddItem} >
                             <input type="number" name="number" placeholder='Type Qnt' id="" />
