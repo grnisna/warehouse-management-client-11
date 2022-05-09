@@ -8,9 +8,9 @@ import { getAnalytics } from "firebase/analytics";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDPozINcA0fiPH9yC6eLYMxX5odWOVgeAY",
-  authDomain: "eletronics-warehouse-70.firebaseapp.com",
-  projectId: "eletronics-warehouse-70",
-  storageBucket: "eletronics-warehouse-70.appspot.com",
+  authDomain: "warehouse-electrics-70.firebaseapp.com",
+  projectId: "warehouse-electrics-70",
+  storageBucket: "warehouse-electrics-70.appspot.com",
   messagingSenderId: "1070889881055",
   appId: "1:1070889881055:web:386e857f8aa9255c5f886a",
   measurementId: "G-J0FSGFR5WV"
