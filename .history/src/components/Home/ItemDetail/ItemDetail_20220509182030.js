@@ -5,7 +5,7 @@ import './ImageDetail.css';
 
 
 const ItemDetail = () => {
-   
+   const [items,setItems] = UseItems();
     const { itemId } = useParams();
 
     const [updateItem, setUpdateItem] = useState({});
@@ -58,7 +58,7 @@ const ItemDetail = () => {
             body:JSON.stringify(newItem)
         })
         .then( res => res.json())
-        .then( data => console.log(data));
+        .then( data => setItems(data));
        
     };
     return (

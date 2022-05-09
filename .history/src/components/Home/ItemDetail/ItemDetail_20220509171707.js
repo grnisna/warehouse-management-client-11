@@ -5,12 +5,15 @@ import './ImageDetail.css';
 
 
 const ItemDetail = () => {
-   
+    const [items,setItems] = UseItems();
     const { itemId } = useParams();
+    let singleItem = items.find(item => item._id === itemId); 
+
+    // const {name} = singleItem;
+    // console.log(singleItem);
 
     const [updateItem, setUpdateItem] = useState({});
-
-    console.log(updateItem);
+    console.log(updateItem.name);
     useEffect( ()=>{
         const url = `http://localhost:5000/items/${itemId}`;
         fetch(url)
@@ -19,15 +22,12 @@ const ItemDetail = () => {
 
     },[itemId]);
 
-    let {name,quantity,color,description,supplier,img} = updateItem;
+    const {name,quantity,color,description,supplier,img} = updateItem;
     
 
-    const handleAddItem = (event) =>{                
-       event.preventDefault();
-         let getValue = parseInt(event.target.number.value);
-         let previusValue = parseInt(quantity);
-         let updateQtn = previusValue + getValue;
-         const newItem = {quantity:updateQtn}; 
+    const handleDelivery = () =>{                
+       
+         
 
         const url = `http://localhost:5000/items/${itemId}`;
         fetch(url,{
@@ -35,32 +35,12 @@ const ItemDetail = () => {
             headers:{
                 'content-type':'application/json'
             },
-            body:JSON.stringify(newItem)
+            body:JSON.stringify(quantity)
         })
         .then( res => res.json())
-        .then( data => console.log(data));
+        .then( data => setItems(data));
        
-    };
-
-    const handleDeliverItem = () =>{                
-       
-         let getValue = parseInt(1);
-         let previusValue = parseInt(quantity);
-         let updateQtn = previusValue - getValue;
-         const newItem = {quantity:updateQtn}; 
-
-        const url = `http://localhost:5000/items/${itemId}`;
-        fetch(url,{
-            method:'PUT',
-            headers:{
-                'content-type':'application/json'
-            },
-            body:JSON.stringify(newItem)
-        })
-        .then( res => res.json())
-        .then( data => console.log(data));
-       
-    };
+    }
     return (
         <div>
             
@@ -73,24 +53,24 @@ const ItemDetail = () => {
                         Product Name: {name}
                     </h3>
                     <h4>
-                        Color:<span style={{ color: 'green' }} > {color}</span>
+                        Color:<span style={{ color: 'green' }} > {color.toUpperCase()}</span>
                     </h4>
                     <h4>
                         Total Qnt: <span style={{ color: 'orange' }} > {quantity} </span>
                     </h4>
                     <p>
-                        {description}
+                        {singleItem?.description}
                     </p>
                     <p>
                         Supplier: <span style={{ color: 'blue' }}>{supplier}</span>
                     </p>
 
                     <div className='btnContainer' >
-                        <button onClick={handleDeliverItem} className='btn btn-primary'>Delivered</button>
+                        <button onClick={handleDelivery} className='btn btn-primary'>Delivered</button>
                         
-                        <form onSubmit={handleAddItem} >
+                        <form >
                             <input type="number" name="number" placeholder='Type Qnt' id="" />
-                            <input type="submit" value="Add Item Qtn" />
+                            <input type="submit" value="Add" />
                         </form>
 
                     </div>

@@ -5,12 +5,15 @@ import './ImageDetail.css';
 
 
 const ItemDetail = () => {
-   
+    // const [items,setItems] = UseItems();
     const { itemId } = useParams();
+    // let singleItem = items.find(item => item._id === itemId); 
+
+    // const {name} = singleItem;
+    // console.log(singleItem);
 
     const [updateItem, setUpdateItem] = useState({});
-
-    console.log(updateItem);
+    console.log(updateItem.name);
     useEffect( ()=>{
         const url = `http://localhost:5000/items/${itemId}`;
         fetch(url)
@@ -26,26 +29,6 @@ const ItemDetail = () => {
        event.preventDefault();
          let getValue = parseInt(event.target.number.value);
          let previusValue = parseInt(quantity);
-         let updateQtn = previusValue + getValue;
-         const newItem = {quantity:updateQtn}; 
-
-        const url = `http://localhost:5000/items/${itemId}`;
-        fetch(url,{
-            method:'PUT',
-            headers:{
-                'content-type':'application/json'
-            },
-            body:JSON.stringify(newItem)
-        })
-        .then( res => res.json())
-        .then( data => console.log(data));
-       
-    };
-
-    const handleDeliverItem = () =>{                
-       
-         let getValue = parseInt(1);
-         let previusValue = parseInt(quantity);
          let updateQtn = previusValue - getValue;
          const newItem = {quantity:updateQtn}; 
 
@@ -58,9 +41,9 @@ const ItemDetail = () => {
             body:JSON.stringify(newItem)
         })
         .then( res => res.json())
-        .then( data => console.log(data));
+        .then( data => setUpdateItem(data));
        
-    };
+    }
     return (
         <div>
             
@@ -86,7 +69,7 @@ const ItemDetail = () => {
                     </p>
 
                     <div className='btnContainer' >
-                        <button onClick={handleDeliverItem} className='btn btn-primary'>Delivered</button>
+                        <button className='btn btn-primary'>Delivered</button>
                         
                         <form onSubmit={handleAddItem} >
                             <input type="number" name="number" placeholder='Type Qnt' id="" />

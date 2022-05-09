@@ -6,7 +6,7 @@ import UseItems from '../../Hooks/UseItems/UseItems';
 const ItemDetail = () => {
     const [item,setItem] = useState([]);
     useEffect( ()=>{
-        fetch('http://localhost:5000/items')
+        fetch('https://immense-brushlands-19382.herokuapp.com/items')
         .then( res => res.json())
         .then( data => setItem(data));
     } ,[]);;
