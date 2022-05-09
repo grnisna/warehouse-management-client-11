@@ -5,11 +5,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import analytics from '../../Login/Login/firebase/firebase.init';
 
 const Header = () => {
-    // const [user] = useAuthState(analytics);
-    // console.log(user);
-    //import { getAuth } from "firebase/auth";
-    //const auth = getAuth(app);
-// export default auth;
+    const [user] = useAuthState(analytics);
+    console.log(user);
+    
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>

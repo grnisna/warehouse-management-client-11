@@ -8,8 +8,6 @@ const Header = () => {
     // const [user] = useAuthState(analytics);
     // console.log(user);
     //import { getAuth } from "firebase/auth";
-    //const auth = getAuth(app);
-// export default auth;
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>

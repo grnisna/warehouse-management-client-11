@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from 'react-router-dom';
 
-
 const Login = () => {
     const navigate = useNavigate();
     const [
@@ -32,7 +31,8 @@ const Login = () => {
 
     };
     if (user) {
-        navigate('/home');       
+        navigate('/home');
+       
     }
 
 

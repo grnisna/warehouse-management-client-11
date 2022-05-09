@@ -1,15 +1,8 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import analytics from '../../Login/Login/firebase/firebase.init';
 
 const Header = () => {
-    // const [user] = useAuthState(analytics);
-    // console.log(user);
-    //import { getAuth } from "firebase/auth";
-    //const auth = getAuth(app);
-// export default auth;
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>

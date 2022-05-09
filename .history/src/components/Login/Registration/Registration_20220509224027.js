@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import image from '../../../images/registration/registration-image2.png';
-
+import auth from '../Login/firebase/firebase.init';
 import './Registration.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
-import auth from '../Login/firebase/firebase.init';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import analytics from '../Login/firebase/firebase.init';
 
 const Registration = () => {
-    
     const [agree, setAgree] = useState(false);
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+      ] = useCreateUserWithEmailAndPassword(analytics);
 
       const handleRegistration = event =>{
           event.preventDefault();

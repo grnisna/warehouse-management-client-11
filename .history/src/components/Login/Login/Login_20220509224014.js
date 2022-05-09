@@ -7,7 +7,7 @@ import './Login.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from 'react-router-dom';
-
+import analytics from './firebase/firebase.init';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Login = () => {
         user,
         loading,
         error,
-    ] = useSignInWithEmailAndPassword(auth);
+    ] = useSignInWithEmailAndPassword(analytics);
     
 
     const handleSignIn = event => {

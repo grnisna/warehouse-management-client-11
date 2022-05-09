@@ -6,18 +6,17 @@ import image from '../../../images/login/login-image.jpg';
 import './Login.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link, useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 const Login = () => {
-    const navigate = useNavigate();
+
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    
+    console.log(user);
 
     const handleSignIn = event => {
         event.preventDefault();
@@ -31,10 +30,6 @@ const Login = () => {
         }
 
     };
-    if (user) {
-        navigate('/home');       
-    }
-
 
     return (
         <div className=" login " >
