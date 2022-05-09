@@ -8,6 +8,7 @@ import Carosel from './components/Home/Carosel/Carosel';
 import { ToastContainer } from 'react-toastify';
 
 import Registration from './components/Login/Registration/Registration';
+import RequireAuth from './components/Login/Login/RequireAuth/RequireAuth';
 
 
 function App() {
@@ -18,7 +19,12 @@ function App() {
         <Route path='/' element={<Home></Home>} ></Route>
         <Route path='/home' element={<Home></Home>} ></Route>
         <Route path='/carosel' element={<Carosel></Carosel>} ></Route>
-        <Route path='/itemDetail/:itemId' element={<ItemDetail></ItemDetail>} ></Route>
+        <Route path='/itemDetail/:itemId' element={
+          <RequireAuth>
+            <ItemDetail></ItemDetail>
+          </RequireAuth>
+        } ></Route>
+
         <Route path='/registration' element={<Registration></Registration>} ></Route>
         <Route path='/login' element={<Login></Login>} ></Route>
       </Routes>

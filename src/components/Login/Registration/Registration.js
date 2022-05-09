@@ -1,34 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import image from '../../../images/registration/registration-image2.png';
-
 import './Registration.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../Login/firebase/firebase.init';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+
+import Loading from '../Loading/Loading';
+import SocialMedia from '../SocialMedia/SocialMedia';
 
 const Registration = () => {
-    
-    const [agree, setAgree] = useState(false);
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+    const [user] = useAuthState(auth);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
 
-      const handleRegistration = event =>{
-          event.preventDefault();
-          const email = event.target.email.value;
-          const password = event.target.password.value;
-                     
-              createUserWithEmailAndPassword(email,password);
-              toast('Successfully Registration');
-          
+    const [agree, setAgree] = useState(false);
+    const [createUserWithEmailAndPassword, loading, error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    useEffect ( ()=>{
+        if(user){
+            navigate(from, {replace:true});
+        }
+    },[from, navigate, user])
+    const handleRegistration = event => {
+        event.preventDefault();
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+
+        createUserWithEmailAndPassword(email, password);        
+        toast('Successfully Registration');
         event.target.reset();
-      }
+    }
+
+    if (loading) {
+        return <Loading></Loading>
+    }
     return (
         <div className=" registration " >
             <div className='image-area' >
@@ -36,35 +44,37 @@ const Registration = () => {
             </div>
 
             <div>
-            <Form onSubmit={handleRegistration}>
-                <Form.Group className="mb-3" controlId="formBasicText">
-                    
-                    <Form.Control type="text"  placeholder="Enter Your Name" required />                    
-                </Form.Group>
+                <Form onSubmit={handleRegistration}>
+                    <Form.Group className="mb-3" controlId="formBasicText">
 
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    
-                    <Form.Control type="email" name='email' placeholder="Enter email" required />                    
-                </Form.Group>
+                        <Form.Control type="text" placeholder="Enter Your Name" required />
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    
-                    <Form.Control type="password" name='password' placeholder="Password" required />
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
 
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check onClick={()=>setAgree(!agree)} type="checkbox" label="Accept Terms and Conditions" />
-                </Form.Group>
+                        <Form.Control type="email" name='email' placeholder="Enter email" required />
+                    </Form.Group>
 
-                {error && <p style={{color:'red'}} >{error.message}</p>}
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
 
-                <Button disabled={!agree} className='w-100' variant="primary" type="submit">
-                   Registration
-                </Button>
-            </Form>
+                        <Form.Control type="password" name='password' placeholder="Password" required />
+                    </Form.Group>
 
-            <p>Already have Account? <Link to='/login' >Log In</Link> </p>
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <Form.Check onClick={() => setAgree(!agree)} type="checkbox" label="Accept Terms and Conditions" />
+                    </Form.Group>
+
+                    {error && <p style={{ color: 'red' }} >{error.message}</p>}
+
+                    <Button disabled={!agree} className='w-100' variant="primary" type="submit">
+                        Registration
+                    </Button>
+                </Form>
+
+                <p>Already have Account? <Link to='/login' >Log In</Link> </p>
+                <SocialMedia></SocialMedia>
             </div>
+            
         </div>
     );
 };

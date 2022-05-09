@@ -1,23 +1,28 @@
-import React from 'react';
-import auth from './firebase/firebase.init';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import React, { useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import image from '../../../images/login/login-image.jpg';
 import './Login.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from './firebase/firebase.init';
+import SocialMedia from '../SocialMedia/SocialMedia';
 
 
 const Login = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    // let from = location.state?.from?.pathname || "/";
+    const from = location?.state?.from?.pathname || '/';
+
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    
+
 
     const handleSignIn = event => {
         event.preventDefault();
@@ -31,9 +36,12 @@ const Login = () => {
         }
 
     };
-    if (user) {
-        navigate('/home');       
-    }
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
+    }, [user, navigate, from])
+
 
 
     return (
@@ -63,6 +71,8 @@ const Login = () => {
                     </Button>
                 </Form>
                 <p>Need Registration ? <Link to='/registration' >Registration</Link> </p>
+                
+                <SocialMedia></SocialMedia>
             </div>
         </div>
     );

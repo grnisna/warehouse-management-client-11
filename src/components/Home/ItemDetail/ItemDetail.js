@@ -11,7 +11,7 @@ const ItemDetail = () => {
 
     const [updateItem, setUpdateItem] = useState({});
 
-    console.log(updateItem);
+    
     useEffect( ()=>{
         const url = `https://immense-brushlands-19382.herokuapp.com/items/${itemId}`;
         fetch(url)
