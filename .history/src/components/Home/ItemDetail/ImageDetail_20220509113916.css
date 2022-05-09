@@ -1,0 +1,8 @@
+.itemContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.imageContainer{
+    margin-right: 100px;
+}

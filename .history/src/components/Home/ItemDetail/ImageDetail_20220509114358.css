@@ -1,0 +1,9 @@
+.itemContainer{
+    display: flex;
+    
+    justify-content: space-evenly;
+}
+.imageContainer{
+    width: 150%;
+    
+}

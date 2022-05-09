@@ -1,0 +1,21 @@
+.itemContainer{
+    display: flex;    
+    justify-content: space-evenly;
+}
+.imageContainer{
+    width: 150%;    
+}
+.btnContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+@media screen and (max-width:478px) {
+    .itemContainer{
+        display: block;    
+    }
+    .imageContainer{
+        width: 100%;    
+    }
+}

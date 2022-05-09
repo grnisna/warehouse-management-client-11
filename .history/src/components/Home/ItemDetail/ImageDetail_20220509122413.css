@@ -1,0 +1,33 @@
+.itemContainer{
+    display: flex;    
+    justify-content: space-evenly;
+}
+.imageContainer{
+    width: 150%;    
+}
+.btnContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+@media screen and (max-width:478px) {
+    .itemContainer{
+        display: block;    
+    }
+    
+    .content-area{
+        padding: 10px !important;
+        margin: 0 !important;
+        margin-top: 10 !important;
+        box-shadow: none !important;
+    }
+    .btnContainer{
+        display: block;
+        
+    }
+    .btnContainer button{
+        margin-bottom:20px ;
+        
+    }
+}

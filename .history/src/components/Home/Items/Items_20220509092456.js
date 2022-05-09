@@ -5,7 +5,6 @@ import './Items.css';
 
 const Items = () => {
     const [items] = UseItems();
-    
     return (
         <div>
             <h1 className='text-center' >Inventory Items {items.length} </h1>

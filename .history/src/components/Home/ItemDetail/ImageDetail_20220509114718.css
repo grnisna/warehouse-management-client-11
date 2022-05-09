@@ -1,0 +1,14 @@
+.itemContainer{
+    display: flex;
+    
+    justify-content: space-evenly;
+}
+.imageContainer{
+    width: 150%;
+    
+}
+.btnContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

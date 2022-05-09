@@ -1,10 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import Login from './components/Login/Login/Login';
-import Header from './components/Home/Header/Header'; 
+import Header from './components/Home/Header/Header'; \
 import Home from './components/Home/Home';
 import ItemDetail from './components/Home/ItemDetail/ItemDetail';
 import Footer from './components/Home/Footer/Footer';
-import Carosel from './components/Home/Carosel/Carosel';
 
 
 function App() {

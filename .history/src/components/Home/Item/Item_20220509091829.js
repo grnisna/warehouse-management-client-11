@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import './Item.css';
 
 const Item = ({ item }) => {
-    const { img, quantity, color, name, description, supplier,_id} = item;
+    const { img, quantity, color, name, description, supplier, id } = item;
     
     const navigate = useNavigate();
     const handleBtn = ()=>{
-        navigate(`/itemDetail/${_id}`)
+        navigate(`/itemDetail/${id}`)
     } 
     return (
         <div  className='p-3 border rounded m-2 shadow-sm' >
@@ -27,7 +27,7 @@ const Item = ({ item }) => {
                 <div className='btn-seciton' >
 
                 <h6>Supplier:<span style={{ color: 'blue' }} >{supplier}</span></h6>
-                <button onClick={handleBtn}  className='btn btn-secondary' >More Details</button>
+                <button onClick={handleBtn} className='btn btn-secondary' >More Details</button>
                 </div>
             </div>
         </div>
