@@ -1,0 +1,11 @@
+.login{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 10px;
+    padding: 50px;
+
+}
+.image-area{
+    width: 60%;
+    height: auto;
+}

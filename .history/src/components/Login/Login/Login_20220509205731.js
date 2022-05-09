@@ -6,11 +6,9 @@ import image from '../../../images/login/login-image.jpg';
 import './Login.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
 
 const Login = () => {
     const [user, loading, errorr] = useAuthState(auth);
-    console.log(user);
     const [signInWithEmailAndPassword, error] = useSignInWithEmailAndPassword(auth);
 
     const handleSignIn = event => {
@@ -44,13 +42,12 @@ const Login = () => {
                         <Form.Control type="password" name='password' placeholder="Password" />
                     </Form.Group>
 
-                    {errorr && <p style={{ color: 'red' }} >{errorr.message}</p>}
+                    {error && <p style={{ color: 'red' }} >{errorr.message}</p>}
 
                     <Button className='w-100' variant="primary" type="submit">
                         Log In
                     </Button>
                 </Form>
-                <p>Need Registration ? <Link to='/registration' >Registration</Link> </p>
             </div>
         </div>
     );

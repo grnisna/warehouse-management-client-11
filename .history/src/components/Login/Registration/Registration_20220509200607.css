@@ -1,0 +1,9 @@
+.registration{
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.image-area{
+    width: 10%;
+    height: auto;
+}

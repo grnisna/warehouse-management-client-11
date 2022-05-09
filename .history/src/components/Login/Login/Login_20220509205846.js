@@ -6,7 +6,6 @@ import image from '../../../images/login/login-image.jpg';
 import './Login.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
 
 const Login = () => {
     const [user, loading, errorr] = useAuthState(auth);
@@ -50,7 +49,6 @@ const Login = () => {
                         Log In
                     </Button>
                 </Form>
-                <p>Need Registration ? <Link to='/registration' >Registration</Link> </p>
             </div>
         </div>
     );

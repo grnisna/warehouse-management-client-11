@@ -50,7 +50,7 @@ const Login = () => {
                         Log In
                     </Button>
                 </Form>
-                <p>Need Registration ? <Link to='/registration' >Registration</Link> </p>
+                <p>Registration ? <Link to='/registration' >Registration</Link> </p>
             </div>
         </div>
     );

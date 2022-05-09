@@ -1,0 +1,10 @@
+.registration{
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+
+}
+.image-area{
+    width: 40%;
+    height: auto;
+}
