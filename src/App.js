@@ -12,6 +12,7 @@ import RequireAuth from './components/Login/Login/RequireAuth/RequireAuth';
 import ManageItems from './components/ManageItems/ManageItems';
 import AddItem from './components/ManageItems/AddItem';
 import MyItems from './components/ManageItems/MyItems';
+import Brands from './components/Brands/Brands';
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
         <Route path='/registration' element={<Registration></Registration>} ></Route>
         <Route path='/login' element={<Login></Login>} ></Route>
       </Routes>
+      <Brands></Brands>
       <Footer></Footer>
       <ToastContainer/>
     </div>
