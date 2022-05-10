@@ -16,8 +16,7 @@ import { async } from '@firebase/util';
 const Login = () => {
     const [user] = useAuthState(auth)
     const navigate = useNavigate();
-    const location = useLocation();
-    // let from = location.state?.from?.pathname || "/";
+    const location = useLocation();    
     const from = location?.state?.from?.pathname || '/';
 
 // ---------sign in email and password------------ 

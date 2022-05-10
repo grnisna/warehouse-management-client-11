@@ -1,18 +1,22 @@
-import React from 'react';
-import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import React, { useEffect } from 'react';
+import { useAuthState, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../Login/firebase/firebase.init';
 import './SocialMedia.css';
 import {  useLocation, useNavigate } from 'react-router-dom';
 
 const SocialMedia = () => {
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-    const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
+    const [user] = useAuthState(auth);
+    const [signInWithGoogle, user1, loading, error] = useSignInWithGoogle(auth,{ sendEmailVerification: true });
+    const [signInWithGithub, user2, loading1, error1] = useSignInWithGithub(auth,{ sendEmailVerification: true });
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-    if(user || user1){
-        navigate(from, {replace:true});
-    }
+    
+    useEffect(()=>{
+        if(user){
+            navigate(from, {replace:true});
+        }
+    },[])
     return (
         <div>
             <div className='or-section' >
