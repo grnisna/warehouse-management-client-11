@@ -1,41 +1,62 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import image from '../../../images/login/login-image.jpg';
 import './Login.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import auth from './firebase/firebase.init';
+import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+
 import SocialMedia from '../SocialMedia/SocialMedia';
+import axios from 'axios';
+import auth from './firebase/firebase.init';
+import { async } from '@firebase/util';
 
 
 const Login = () => {
+    const [user] = useAuthState(auth)
     const navigate = useNavigate();
     const location = useLocation();
     // let from = location.state?.from?.pathname || "/";
     const from = location?.state?.from?.pathname || '/';
 
+// ---------sign in email and password------------ 
     const [
         signInWithEmailAndPassword,
-        user,
+        
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    //--------------reset password-------------
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
-    const handleSignIn = event => {
+
+//---------handle submit button ---------------
+    const handleSignIn = async event => {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
 
-        signInWithEmailAndPassword(email, password);
+        await  signInWithEmailAndPassword(email, password);
+        const {data} = await axios.post('https://immense-brushlands-19382.herokuapp.com/login',{email});
+        localStorage.setItem('token',data.token);
         if (user) {
             toast('Successfully singin');
             event.target.reset();
         }
 
     };
+
+    //--------- reset button----------
+    const emailRef = useRef();
+    
+    const handleResetPassword = async (event) =>{
+        const email = emailRef.current.value;
+       await sendPasswordResetEmail(email);
+       alert('send email for resetPassword');
+    }
+    //--------------navigated -------------
     useEffect(() => {
         if (user) {
             navigate(from, { replace: true });
@@ -56,7 +77,7 @@ const Login = () => {
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
 
-                        <Form.Control type="email" name='email' placeholder="Enter email" />
+                        <Form.Control ref={emailRef} type="email" name='email' placeholder="Enter email" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -71,6 +92,7 @@ const Login = () => {
                     </Button>
                 </Form>
                 <p>Need Registration ? <Link to='/registration' >Registration</Link> </p>
+                <p>Forget Password? <button onClick={handleResetPassword} className=' btn btn-danger'  >Reset Password</button> </p>
                 
                 <SocialMedia></SocialMedia>
             </div>

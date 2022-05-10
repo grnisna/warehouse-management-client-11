@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+
 import UseItems from '../../Hooks/UseItems/UseItems';
 import Item from '../Item/Item';
 import './Items.css';
@@ -8,7 +8,7 @@ const Items = () => {
     
     return (
         <div>
-            <h1 className='text-center' >Inventory Items {items.length} </h1>
+            <h1 className='text-center' >Inventory Items</h1>
             <div className='items' >
                 {
                     items.slice(0,6).map(item => <Item 
