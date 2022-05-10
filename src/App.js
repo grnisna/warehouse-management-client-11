@@ -53,8 +53,8 @@ function App() {
         <Route path='/login' element={<Login></Login>} ></Route>
       </Routes>
 
-      <Rechart></Rechart>
-      <Brands></Brands>
+      
+      
       <Footer></Footer>
       <ToastContainer/>
     </div>
