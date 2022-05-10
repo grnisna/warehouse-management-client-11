@@ -3,9 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './ImageDetail.css';
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UseItems from '../../Hooks/UseItems/UseItems';
 
 
 const ItemDetail = () => {
+    
     const navigate = useNavigate();
    
     const { itemId } = useParams();
