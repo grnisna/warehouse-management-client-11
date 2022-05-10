@@ -16,7 +16,7 @@ const AddItem = () => {
         const img = event.target.img.value;
 
         const item = {name, quantity, color, description, supplier, img};
-        const url = `http://localhost:5000/manage`;
+        const url = `https://immense-brushlands-19382.herokuapp.com/manage`;
         fetch(url,{
             method:'POST',
             headers:{'content-type':'application/json'},
