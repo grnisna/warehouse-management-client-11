@@ -1,9 +1,12 @@
 import React from 'react';
 
 import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
+import auth from '../Login/Login/firebase/firebase.init';
 
 const AddItem = () => {
+    const [user] = useAuthState(auth);
     // const  name, quantity, color, description, supplier, img, _id ;
     
     
@@ -15,8 +18,9 @@ const AddItem = () => {
         const description = event.target.description.value;
         const supplier = event.target.supplier.value;
         const img = event.target.img.value;
+        const email = event.target.email.value;
 
-        const item = {name, quantity, color, description, supplier, img};
+        const item = {name, quantity, color, description, supplier, img,email};
         const url = `https://immense-brushlands-19382.herokuapp.com/manage`;
         fetch(url,{
             method:'POST',
@@ -56,8 +60,11 @@ const AddItem = () => {
                     <FormControl as="textarea" name='description' placeholder='description' aria-label="With textarea" />
                 </InputGroup>
 
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Control type="email" value={user.email} name='email' placeholder="Email" required disabled />
+                </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicText">
-                    <Form.Control type="textarea" name='img' placeholder="Image Link" required />
+                    <Form.Control type="text" name='img' placeholder="Image Link" required />
                 </Form.Group>
 
                 <Button className='w-100' variant="primary" type="submit">

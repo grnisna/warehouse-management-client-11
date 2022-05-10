@@ -11,6 +11,7 @@ import Registration from './components/Login/Registration/Registration';
 import RequireAuth from './components/Login/Login/RequireAuth/RequireAuth';
 import ManageItems from './components/ManageItems/ManageItems';
 import AddItem from './components/ManageItems/AddItem';
+import MyItems from './components/ManageItems/MyItems';
 
 
 function App() {
@@ -20,15 +21,32 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>} ></Route>
         <Route path='/home' element={<Home></Home>} ></Route>
+
+        {/* --------------- Image detail route-------- */}
         <Route path='/itemDetail/:itemId' element={
           <RequireAuth>
             <ItemDetail></ItemDetail>
           </RequireAuth>
         } ></Route>
+      {/* --------------- manage route-------- */}
+        <Route path='/manage' element={
+          <RequireAuth>
+            <ManageItems></ManageItems>
+          </RequireAuth>
+        } ></Route>
+      {/* ------------ add item ---------  */}      
+        <Route path='/additem' element={
+          <RequireAuth>
+            <AddItem></AddItem>
+          </RequireAuth>
+        } ></Route>
 
-        <Route path='/manage' element={<ManageItems></ManageItems>} ></Route>
-        <Route path='/additem' element={<AddItem></AddItem>} ></Route>
-
+        {/* ----------- My Item ----------  */}
+        <Route path='/myitem' element={
+          <RequireAuth>
+            <MyItems></MyItems>
+          </RequireAuth>
+        } ></Route>
         <Route path='/registration' element={<Registration></Registration>} ></Route>
         <Route path='/login' element={<Login></Login>} ></Route>
       </Routes>
