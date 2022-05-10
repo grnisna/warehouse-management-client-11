@@ -5,6 +5,7 @@ import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 import auth from '../Login/Login/firebase/firebase.init';
 import './Myitems.css';
 
@@ -35,8 +36,27 @@ const MyItems = () => {
         }
         myAllItems();
 
+    }, [user.email]);
 
-    }, [user.email])
+    const removeItem = (id) =>{
+        const agreeToDelete = window.confirm('Want to DELETE??');
+
+        if (agreeToDelete) {
+            const url = `https://immense-brushlands-19382.herokuapp.com/items/${id}`;
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    
+                    const restItem = myItems.filter(item => item._id !== id);                    
+                    setMyItems(restItem);
+                    toast('successFully deleted');                    
+                })
+        }
+
+        
+    }
     return (
         <div>
             <h3 className='text-center text-info p-3 my-3' >My Item page {myItems.length} </h3>
@@ -51,6 +71,8 @@ const MyItems = () => {
                             <th>Color</th>
                             <th>Quantity</th>
                             <th>Supplier</th>
+                            <th>Delete</th>
+                            
                         </tr>
                     </thead>
                     {myItems.map(item => <tbody key={item._id}>
@@ -60,6 +82,7 @@ const MyItems = () => {
                             <td>{item.color} </td>
                             <td>{item.quantity} </td>
                             <td>{item.supplier} </td>
+                            <td> <button className='btn btn-danger' onClick={()=>removeItem(item._id)} >X</button> </td>
                         </tr>
                     </tbody>)}
 
