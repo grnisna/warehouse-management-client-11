@@ -28,4 +28,8 @@
         width: 100%;
         
     }
+    .responsive-image{
+        width: 90%;
+        margin: auto;
+    }
 }

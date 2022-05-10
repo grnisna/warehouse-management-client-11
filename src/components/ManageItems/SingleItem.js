@@ -9,8 +9,8 @@ const SingleItem = ({ item }) => {
     return (
         <div>
             <div className='singleItems m-3 p-3 rounded border shadow'>
-                <div className=''>
-                    <img className='img-fluid' src={img} alt="" />
+                <div>
+                    <img className='responsive-image'  src={img} alt="" />
                 </div>
 
                 <div className='ms-5   p-5  content-area' >
