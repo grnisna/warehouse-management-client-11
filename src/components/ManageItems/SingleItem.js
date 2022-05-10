@@ -1,27 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import UseItems from '../Hooks/UseItems/UseItems';
 import './Singleitems.css';
 
 const SingleItem = ({ item }) => {
     const [items, setItems] = UseItems();
     console.log(items);
-
     const navigate = useNavigate();
 
+
     const { name, quantity, color, description, supplier, img, _id } = item;
-    const hadleRemoveItem = () => {
+    
+    const hadleRemoveItem = (id) => {
+        
+
         const agreeToDelete = window.confirm('Want to Remove??');
+
         if (agreeToDelete) {
-            const url = `https://immense-brushlands-19382.herokuapp.com/items/${_id}`;
+            const url = `https://immense-brushlands-19382.herokuapp.com/items/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    const restItem = items.filter(item => item._id === _id);
+                    const restItem = items.filter(item => item._id !== id);
+                    console.log(restItem);
                     setItems(restItem);
+                    toast('successFully REmoved');
+                    
                 })
         }
     }
@@ -50,7 +58,7 @@ const SingleItem = ({ item }) => {
                     </p>
 
                     <div className='button-section' >
-                        <button onClick={hadleRemoveItem} className='btn btn-danger me-3'>Remove Item</button>
+                        <button onClick={()=>hadleRemoveItem(_id)} className='btn btn-danger me-3'>Remove Item</button>
                         <button onClick={() => navigate('/additem')} className='btn btn-info'>Add New Item</button>
                     </div>
                 </div>

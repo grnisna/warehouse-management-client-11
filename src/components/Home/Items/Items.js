@@ -12,7 +12,7 @@ const Items = () => {
             <div className='items' >
                 {
                     items.slice(0,6).map(item => <Item 
-                        key={item.index}
+                        key={item._id}
                         item = {item}
                         ></Item>)
                 }

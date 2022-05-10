@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 const AddItem = () => {
     // const  name, quantity, color, description, supplier, img, _id ;
@@ -24,7 +25,8 @@ const AddItem = () => {
         })
         .then( res => res.json())
         .then( data => {
-            console.log(data)
+            // event.target.reset();
+            toast('Successfully added');
         });
     }
 
