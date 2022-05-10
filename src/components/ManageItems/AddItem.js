@@ -25,7 +25,7 @@ const AddItem = () => {
         })
         .then( res => res.json())
         .then( data => {
-            // event.target.reset();
+            event.target.reset();
             toast('Successfully added');
         });
     }

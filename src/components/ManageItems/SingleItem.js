@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import UseItems from '../Hooks/UseItems/UseItems';
 import './Singleitems.css';
 
 const SingleItem = ({ item }) => {
-    const [items, setItems] = UseItems();
-    console.log(items);
-    const navigate = useNavigate();
+    const navigate = useNavigate();    
+    const [items,setItems] = UseItems();
 
-
-    const { name, quantity, color, description, supplier, img, _id } = item;
+    const { name, quantity, color, description, supplier, img, _id } = item;   
     
-    const hadleRemoveItem = (id) => {
-        
-
+    const hadleRemoveItem = (id) => {       
         const agreeToDelete = window.confirm('Want to Remove??');
 
         if (agreeToDelete) {
@@ -25,18 +20,16 @@ const SingleItem = ({ item }) => {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    const restItem = items.filter(item => item._id !== id);
-                    console.log(restItem);
+                    const restItem = items.filter(item => item._id !== id);                    
                     setItems(restItem);
-                    toast('successFully REmoved');
-                    
+                    toast('successFully REmoved');                    
                 })
         }
     }
     return (
         <div>
             <div className='singleItems m-3 p-3 rounded border shadow'>
-                <div>
+                <div className='w-50'>
                     <img className='responsive-image' src={img} alt="" />
                 </div>
 
