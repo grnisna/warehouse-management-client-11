@@ -1,18 +1,14 @@
-.itemContainer{
-    display: flex;    
-    justify-content: space-evenly;
-}
-.imageContainer{
-    width: 150%;    
-}
-.btnContainer{
+.singleItems{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
+
+
+
 @media screen and (max-width:478px) {
-    .itemContainer{
+    .singleItems{
         display: block;    
     }
     
@@ -22,15 +18,14 @@
         margin-top: 50px !important;
         box-shadow: none !important;
     }
-    .btnContainer{
+    .button-section{
         display: block;
+        
 
     }
-    .btnContainer button{
+    .button-section button{
         margin-bottom:20px ;
-        
-    }
-    .input{
         width: 100%;
+        
     }
 }

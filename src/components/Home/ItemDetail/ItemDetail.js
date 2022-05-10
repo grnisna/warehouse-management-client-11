@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './ImageDetail.css';
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 const ItemDetail = () => {
+    const navigate = useNavigate();
    
     const { itemId } = useParams();
 
@@ -94,13 +95,16 @@ const ItemDetail = () => {
                     </p>
 
                     <div className='btnContainer' >
-                        <button onClick={handleDeliverItem} className='btn btn-primary'>Delivered</button>
+                        <button  onClick={handleDeliverItem} className='btn btn-primary input'>Delivered</button>
                         
                         <form onSubmit={handleAddItem} >
-                            <input type="number" name="number" placeholder='Type Qnt' id="" />
-                            <input type="submit" value="Add Item Qtn" />
+                            <input className='input' type="number" name="number" placeholder='Type Qnt' id="" />
+                            <input className='input' type="submit" value="Add Item Qtn" />
                         </form>
 
+                    </div>
+                    <div>
+                        <button onClick={()=>navigate('/manage')} className='btn btn-primary w-100 mt-5' >Manage Items</button>
                     </div>
                 </div>
             </div>
