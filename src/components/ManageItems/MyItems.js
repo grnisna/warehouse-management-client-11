@@ -11,7 +11,7 @@ const MyItems = () => {
 
     useEffect(() => {
         const email = user.email;
-        const url = `http://localhost:5000/manage?email=${email}`;
+        const url = `https://immense-brushlands-19382.herokuapp.com/manage?email=${email}`;
         fetch(url)
             .then(res => res.json())
             .then(data => {
