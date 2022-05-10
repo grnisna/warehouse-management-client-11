@@ -1,0 +1,9 @@
+.imageContainer{
+    width: 1250px;
+    height: 610px;
+    margin: auto;
+}
+.imageContainer img{
+    width: 67%;
+    height: auto;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
-import imageOne from '../../../images/banner-images/imageOnee.png';
-import imageTwo from '../../../images/banner-images/imageTwoo.jpg';
-import imageThree from '../../../images/banner-images/imageThreee.jpg';
+import imageOne from '../../../images/banner-images/laptop-onee.jpg';
+import imageTwo from '../../../images/banner-images/laptop-twoo.jpg';
+import imageThree from '../../../images/banner-images/laptop-threee.jpg';
 import { Carousel } from 'react-bootstrap';
 import './Carosel.css';
 
@@ -13,7 +13,7 @@ const Carosel = () => {
                 <Carousel.Item>
                     <div className="imageContainer">
                         <img
-                            className="d-block w-100 "
+                            className=" "
                             src={imageThree}
                             alt="First slide"
                         />
@@ -24,7 +24,7 @@ const Carosel = () => {
                 <Carousel.Item>
                     <div className="imageContainer">
                         <img
-                            className="d-block w-100 "
+                            className=" "
                             src={imageOne}
                             alt="Second slide"
                         />
@@ -36,7 +36,7 @@ const Carosel = () => {
                 <Carousel.Item>
                     <div className="imageContainer">
                         <img
-                            className="d-block w-100"
+                            className=""
                             src={imageTwo}
                             alt="Third slide"
                         />

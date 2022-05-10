@@ -12,7 +12,7 @@ const Item = ({ item }) => {
     return (
         <div className='p-3 border rounded m-2 shadow-sm' >
             <div className='singleItem'>
-                <img className='w-50 me-5' src={img} alt="Augusta Pate" />
+                <img className='singleImage' src={img} alt="Augusta Pate" />
                 <div>
                     <h6>Product Name:<span style={{ color: 'blue' }} >{name}</span></h6>
                     <p>Quantity:<span style={{ color: 'blue' }} >{quantity}</span></p>

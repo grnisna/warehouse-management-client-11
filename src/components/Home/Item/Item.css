@@ -3,6 +3,10 @@
     align-items: center;
     
 }
+.singleImage{
+    width: 40%;
+    margin-right: 30px;
+}
 
 .btn-seciton{
     display: flex;
