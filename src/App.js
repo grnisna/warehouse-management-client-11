@@ -14,6 +14,8 @@ import AddItem from './components/ManageItems/AddItem';
 import MyItems from './components/ManageItems/MyItems';
 import Brands from './components/Brands/Brands';
 import Rechart from './components/Rechart/Rechart';
+import Blog from './components/Blog/Blog';
+import NotFound from './components/NotFound/NotFound';
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>} ></Route>
         <Route path='/home' element={<Home></Home>} ></Route>
+        <Route path='/blog' element={<Blog>000</Blog>} ></Route>
 
         {/* --------------- Image detail route-------- */}
         <Route path='/itemDetail/:itemId' element={
@@ -51,6 +54,7 @@ function App() {
         } ></Route>
         <Route path='/registration' element={<Registration></Registration>} ></Route>
         <Route path='/login' element={<Login></Login>} ></Route>
+        <Route path='*' element={<NotFound></NotFound>} ></Route>
       </Routes>
 
       
