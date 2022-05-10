@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import Registration from './components/Login/Registration/Registration';
 import RequireAuth from './components/Login/Login/RequireAuth/RequireAuth';
 import ManageItems from './components/ManageItems/ManageItems';
+import AddItem from './components/ManageItems/AddItem';
 
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
         } ></Route>
 
         <Route path='/manage' element={<ManageItems></ManageItems>} ></Route>
+        <Route path='/additem' element={<AddItem></AddItem>} ></Route>
+
         <Route path='/registration' element={<Registration></Registration>} ></Route>
         <Route path='/login' element={<Login></Login>} ></Route>
       </Routes>

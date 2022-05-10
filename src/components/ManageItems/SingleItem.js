@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Singleitems.css';
 
 const SingleItem = ({ item }) => {
+    const navigate = useNavigate();
 
     const { name, quantity, color, description, supplier, img, _id } = item;
     return (
@@ -30,7 +32,7 @@ const SingleItem = ({ item }) => {
 
                     <div className='button-section' >
                         <button className='btn btn-danger me-3'>Remove Item</button>
-                        <button className='btn btn-info'>Add New Item</button>
+                        <button onClick={()=>navigate('/additem')} className='btn btn-info'>Add New Item</button>
                     </div>
                 </div>
 
