@@ -1,0 +1,11 @@
+.chart-area{
+    width: 100%;
+    margin: auto;
+}
+
+@media screen  and (max-width:478px) {
+    .chart-area{
+        width: 10%;
+        margin: auto;
+    }
+}

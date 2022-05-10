@@ -13,6 +13,7 @@ import ManageItems from './components/ManageItems/ManageItems';
 import AddItem from './components/ManageItems/AddItem';
 import MyItems from './components/ManageItems/MyItems';
 import Brands from './components/Brands/Brands';
+import Rechart from './components/Rechart/Rechart';
 
 
 function App() {
@@ -51,6 +52,8 @@ function App() {
         <Route path='/registration' element={<Registration></Registration>} ></Route>
         <Route path='/login' element={<Login></Login>} ></Route>
       </Routes>
+
+      <Rechart></Rechart>
       <Brands></Brands>
       <Footer></Footer>
       <ToastContainer/>
