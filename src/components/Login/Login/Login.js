@@ -16,13 +16,13 @@ import { async } from '@firebase/util';
 const Login = () => {
     const [user] = useAuthState(auth)
     const navigate = useNavigate();
-    const location = useLocation();    
+    const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
 
-// ---------sign in email and password------------ 
+    // ---------sign in email and password------------ 
     const [
         signInWithEmailAndPassword,
-        
+
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
@@ -31,15 +31,15 @@ const Login = () => {
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
 
-//---------handle submit button ---------------
+    //---------handle submit button ---------------
     const handleSignIn = async event => {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
 
-        await  signInWithEmailAndPassword(email, password);
-        const {data} = await axios.post('https://immense-brushlands-19382.herokuapp.com/login',{email});
-        localStorage.setItem('token',data.token);
+        await signInWithEmailAndPassword(email, password);
+        const { data } = await axios.post('https://immense-brushlands-19382.herokuapp.com/login', { email });
+        localStorage.setItem('token', data.token);
         if (user) {
             toast('Successfully singin');
             event.target.reset();
@@ -49,16 +49,23 @@ const Login = () => {
 
     //--------- reset button----------
     const emailRef = useRef();
-    
-    const handleResetPassword = async (event) =>{
+
+    const handleResetPassword = async (event) => {
         const email = emailRef.current.value;
-       await sendPasswordResetEmail(email);
-       alert('send email for resetPassword');
+        await sendPasswordResetEmail(email);
+        alert('send email for resetPassword');
     }
     //--------------navigated -------------
     useEffect(() => {
         if (user) {
-            navigate(from, { replace: true });
+            async function getToken() {
+                const email = user.email;
+                const { data } = await axios.post('https://immense-brushlands-19382.herokuapp.com/login', { email });
+                localStorage.setItem('token', data.token);
+                navigate(from, { replace: true });
+            }
+            getToken();                    
+            
         }
     }, [user, navigate, from])
 
@@ -92,7 +99,7 @@ const Login = () => {
                 </Form>
                 <p>Need Registration ? <Link to='/registration' >Registration</Link> </p>
                 <p>Forget Password? <button onClick={handleResetPassword} className=' btn btn-danger'  >Reset Password</button> </p>
-                
+
                 <SocialMedia></SocialMedia>
             </div>
         </div>

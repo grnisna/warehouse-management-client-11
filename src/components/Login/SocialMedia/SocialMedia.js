@@ -14,7 +14,8 @@ const SocialMedia = () => {
     
     useEffect(()=>{
         if(user){
-            navigate(from, {replace:true});
+            console.log(user);
+            // navigate(from, {replace:true});
         }
     },[])
     return (
