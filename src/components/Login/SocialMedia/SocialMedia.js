@@ -34,7 +34,7 @@ const SocialMedia = () => {
                 }
                     <button onClick={()=>signInWithGoogle()}  className='btn btn-secondary w-100 mt-2' >Sing in by Google</button>
                     <button onClick={()=>signInWithGithub()} className='btn btn-secondary w-100 mt-2' >Sing in by Github</button>
-                    <button className='btn btn-secondary w-100 mt-2' >Sing in by Facebook</button>
+                    
             </div>
         </div>
     );
